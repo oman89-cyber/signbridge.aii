@@ -1,0 +1,345 @@
+/*
+  README: Styles for Deaf Mode (Live) page.
+  Theme: Pure black with subtle noise, soft glow card, accessible focus.
+*/
+
+:root {
+  --bg: #000000;
+  --text: rgba(255, 255, 255, 0.92);
+  --text-dim: rgba(255, 255, 255, 0.78);
+  --accent: #00e59a;
+  --accent-2: #ff4d6d;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06);
+  --focus-ring: 0 0 0 3px rgba(255,255,255,0.25), 0 0 0 6px rgba(0, 200, 255, 0.35);
+}
+
+html, body { height: 100%; }
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Darker background with light blue touches */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(100, 150, 200, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(150, 180, 220, 0.04) 0%, transparent 35%),
+    radial-gradient(circle at 50% 50%, rgba(120, 160, 200, 0.03) 0%, transparent 50%),
+    linear-gradient(to bottom, #000000 0%, #0a0a0a 40%, #0d0d0d 70%, #000000 100%);
+  z-index: -3;
+}
+
+/* Twinkling stars layer 1 */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, white, transparent),
+    radial-gradient(1px 1px at 20% 25%, white, transparent),
+    radial-gradient(2px 2px at 30% 10%, white, transparent),
+    radial-gradient(1px 1px at 40% 30%, white, transparent),
+    radial-gradient(1px 1px at 50% 20%, white, transparent),
+    radial-gradient(2px 2px at 60% 35%, white, transparent),
+    radial-gradient(1px 1px at 70% 15%, white, transparent),
+    radial-gradient(1px 1px at 80% 28%, white, transparent),
+    radial-gradient(2px 2px at 90% 18%, white, transparent),
+    radial-gradient(1px 1px at 15% 45%, white, transparent),
+    radial-gradient(1px 1px at 25% 55%, white, transparent),
+    radial-gradient(2px 2px at 35% 48%, white, transparent),
+    radial-gradient(1px 1px at 45% 60%, white, transparent),
+    radial-gradient(1px 1px at 55% 50%, white, transparent),
+    radial-gradient(2px 2px at 65% 58%, white, transparent),
+    radial-gradient(1px 1px at 75% 52%, white, transparent),
+    radial-gradient(1px 1px at 85% 62%, white, transparent),
+    radial-gradient(2px 2px at 95% 55%, white, transparent),
+    radial-gradient(1px 1px at 12% 70%, white, transparent),
+    radial-gradient(1px 1px at 22% 80%, white, transparent),
+    radial-gradient(2px 2px at 32% 75%, white, transparent),
+    radial-gradient(1px 1px at 42% 85%, white, transparent),
+    radial-gradient(1px 1px at 52% 78%, white, transparent),
+    radial-gradient(2px 2px at 62% 88%, white, transparent),
+    radial-gradient(1px 1px at 72% 82%, white, transparent),
+    radial-gradient(1px 1px at 82% 92%, white, transparent),
+    radial-gradient(2px 2px at 92% 85%, white, transparent),
+    radial-gradient(1px 1px at 18% 8%, white, transparent),
+    radial-gradient(1px 1px at 38% 18%, white, transparent),
+    radial-gradient(1px 1px at 58% 12%, white, transparent),
+    radial-gradient(1px 1px at 78% 22%, white, transparent),
+    radial-gradient(1px 1px at 88% 5%, white, transparent);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  animation: twinkle 3s ease-in-out infinite;
+  z-index: -2;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+}
+
+/* Additional twinkling stars layer 2 */
+.skip-link::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(1px 1px at 5% 12%, white, transparent),
+    radial-gradient(1px 1px at 15% 22%, white, transparent),
+    radial-gradient(1px 1px at 25% 8%, white, transparent),
+    radial-gradient(2px 2px at 35% 28%, white, transparent),
+    radial-gradient(1px 1px at 45% 15%, white, transparent),
+    radial-gradient(1px 1px at 55% 32%, white, transparent),
+    radial-gradient(2px 2px at 65% 18%, white, transparent),
+    radial-gradient(1px 1px at 75% 25%, white, transparent),
+    radial-gradient(1px 1px at 85% 12%, white, transparent),
+    radial-gradient(1px 1px at 95% 20%, white, transparent),
+    radial-gradient(1px 1px at 8% 42%, white, transparent),
+    radial-gradient(2px 2px at 18% 52%, white, transparent),
+    radial-gradient(1px 1px at 28% 45%, white, transparent),
+    radial-gradient(1px 1px at 38% 58%, white, transparent),
+    radial-gradient(1px 1px at 48% 48%, white, transparent),
+    radial-gradient(2px 2px at 58% 62%, white, transparent),
+    radial-gradient(1px 1px at 68% 55%, white, transparent),
+    radial-gradient(1px 1px at 78% 65%, white, transparent),
+    radial-gradient(1px 1px at 88% 58%, white, transparent),
+    radial-gradient(1px 1px at 98% 68%, white, transparent),
+    radial-gradient(2px 2px at 3% 75%, white, transparent),
+    radial-gradient(1px 1px at 13% 82%, white, transparent),
+    radial-gradient(1px 1px at 23% 78%, white, transparent),
+    radial-gradient(1px 1px at 33% 88%, white, transparent),
+    radial-gradient(2px 2px at 43% 80%, white, transparent),
+    radial-gradient(1px 1px at 53% 92%, white, transparent),
+    radial-gradient(1px 1px at 63% 85%, white, transparent),
+    radial-gradient(1px 1px at 73% 95%, white, transparent),
+    radial-gradient(2px 2px at 83% 88%, white, transparent),
+    radial-gradient(1px 1px at 93% 98%, white, transparent);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  animation: twinkle 4s ease-in-out infinite 1s;
+  z-index: -2;
+}
+.skip-link:focus {
+  left: 12px; top: 12px; width: auto; height: auto;
+  padding: 8px 12px; background: #111; color: white; border-radius: 8px;
+  outline: none; box-shadow: var(--focus-ring);
+}
+
+.site-header { position: fixed; inset: 0 0 auto 0; padding: 14px 18px; z-index: 10; }
+
+/* Additional twinkling stars layer 3 */
+.site-header::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(1px 1px at 7% 5%, white, transparent),
+    radial-gradient(2px 2px at 11% 14%, white, transparent),
+    radial-gradient(1px 1px at 17% 9%, white, transparent),
+    radial-gradient(1px 1px at 21% 19%, white, transparent),
+    radial-gradient(2px 2px at 27% 7%, white, transparent),
+    radial-gradient(1px 1px at 31% 23%, white, transparent),
+    radial-gradient(1px 1px at 37% 11%, white, transparent),
+    radial-gradient(2px 2px at 41% 17%, white, transparent),
+    radial-gradient(1px 1px at 47% 13%, white, transparent),
+    radial-gradient(1px 1px at 51% 21%, white, transparent),
+    radial-gradient(2px 2px at 57% 6%, white, transparent),
+    radial-gradient(1px 1px at 61% 26%, white, transparent),
+    radial-gradient(1px 1px at 67% 16%, white, transparent),
+    radial-gradient(2px 2px at 71% 24%, white, transparent),
+    radial-gradient(1px 1px at 77% 8%, white, transparent),
+    radial-gradient(1px 1px at 81% 29%, white, transparent),
+    radial-gradient(2px 2px at 87% 14%, white, transparent),
+    radial-gradient(1px 1px at 91% 19%, white, transparent),
+    radial-gradient(1px 1px at 97% 11%, white, transparent),
+    radial-gradient(1px 1px at 4% 38%, white, transparent),
+    radial-gradient(2px 2px at 9% 44%, white, transparent),
+    radial-gradient(1px 1px at 14% 41%, white, transparent),
+    radial-gradient(1px 1px at 19% 51%, white, transparent),
+    radial-gradient(2px 2px at 24% 36%, white, transparent),
+    radial-gradient(1px 1px at 29% 56%, white, transparent),
+    radial-gradient(1px 1px at 34% 39%, white, transparent),
+    radial-gradient(2px 2px at 39% 47%, white, transparent),
+    radial-gradient(1px 1px at 44% 43%, white, transparent),
+    radial-gradient(1px 1px at 49% 54%, white, transparent),
+    radial-gradient(2px 2px at 54% 37%, white, transparent),
+    radial-gradient(1px 1px at 59% 59%, white, transparent),
+    radial-gradient(1px 1px at 64% 46%, white, transparent),
+    radial-gradient(2px 2px at 69% 53%, white, transparent),
+    radial-gradient(1px 1px at 74% 41%, white, transparent),
+    radial-gradient(1px 1px at 79% 57%, white, transparent),
+    radial-gradient(2px 2px at 84% 49%, white, transparent),
+    radial-gradient(1px 1px at 89% 61%, white, transparent),
+    radial-gradient(1px 1px at 94% 44%, white, transparent),
+    radial-gradient(2px 2px at 99% 52%, white, transparent);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  animation: twinkle 5s ease-in-out infinite 0.5s;
+  z-index: -2;
+  pointer-events: none;
+}
+.brand { color: white; font-weight: 700; letter-spacing: .2px; }
+
+.main { min-height: 100%; display: grid; place-items: center; padding: 96px 16px 48px; }
+
+.card {
+  width: 100%; max-width: 1080px; border-radius: 20px; background: #0b0b0b; box-shadow: var(--shadow);
+  padding: 24px; border: 1px solid rgba(255,255,255,0.06);
+}
+
+.card-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.title { margin: 0; color: white; font-size: clamp(22px, 4vw, 28px); }
+.status-row { display: flex; align-items: center; gap: 8px; }
+.status-pill { padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,0.08); color: white; font-size: 0.9rem; }
+.notice { margin-top: 8px; color: var(--text-dim); font-size: 0.95rem; }
+
+.content-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; }
+
+@media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } }
+
+.avatar-panel { background: #0e0e0e; border-radius: 14px; padding: 12px; border: 1px solid rgba(255,255,255,0.06); position: relative; }
+.lang-badge { position: absolute; left: 16px; top: 16px; z-index: 2; padding: 4px 8px; border-radius: 999px; font-size: 0.8rem; background: rgba(0,0,0,0.6); color: white; border: 1px solid rgba(255,255,255,0.18); }
+.avatar { width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; background: #000; display: block; position: relative; overflow: hidden; }
+.avatar-placeholder { width: 100%; height: 100%; display: grid; place-items: center; color: white; }
+.avatar-placeholder svg { width: 60%; height: auto; max-height: 80%; }
+.avatar-caption { margin-top: 8px; font-size: 0.9rem; color: var(--text-dim); text-align: center; }
+.avatar-fallback { margin-top: 8px; color: var(--text-dim); font-size: 0.95rem; }
+
+.transcript-panel { background: #0e0e0e; border-radius: 14px; padding: 12px; border: 1px solid rgba(255,255,255,0.06); display: grid; gap: 12px; }
+.transcript { min-height: 120px; border-radius: 10px; background: #0a0a0a; padding: 12px; border: 1px solid rgba(255,255,255,0.06); }
+.interim { color: rgba(255,255,255,0.6); min-height: 20px; }
+.final { color: white; font-weight: 700; margin-top: 6px; min-height: 24px; }
+.badge { margin-top: 8px; display: inline-block; padding: 4px 8px; border-radius: 999px; font-size: 0.8rem; background: rgba(255,255,255,0.08); color: white; }
+.badge.matched { background: rgba(0, 229, 154, 0.25); border: 1px solid rgba(0,229,154,0.45); }
+.badge.nomatch { background: rgba(255,77,109,0.18); border: 1px solid rgba(255,77,109,0.45); }
+
+.history { max-height: 220px; overflow: auto; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); padding: 10px; background: #0a0a0a; }
+.history-title { margin: 0 0 8px 0; font-size: 1rem; color: var(--text-dim); }
+.history-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.history-list li { color: var(--text); font-size: 0.95rem; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  border: none;
+  background: #000;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  isolation: isolate;
+  transition: transform 160ms ease;
+}
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.btn::before {
+  padding: 2px;
+  background: conic-gradient(
+    from 0deg,
+    #ff0040,
+    #ff00ff,
+    #6a00ff,
+    #003cff,
+    #00e5ff,
+    #00ff85,
+    #d4ff00,
+    #ff7a00,
+    #ff0040
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.btn::after {
+  background: conic-gradient(
+    from 0deg,
+    #ff0040,
+    #ff00ff,
+    #6a00ff,
+    #003cff,
+    #00e5ff,
+    #00ff85,
+    #d4ff00,
+    #ff7a00,
+    #ff0040
+  );
+  filter: blur(16px);
+  opacity: 0.2;
+}
+
+.btn:disabled::before,
+.btn:disabled::after {
+  opacity: 0.1;
+}
+
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+  padding: 10px 14px; border-radius: 10px; background: rgba(20,20,20,0.95); color: white;
+  border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  opacity: 0; pointer-events: none; transition: opacity 160ms ease, transform 160ms ease;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(-4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .toast { transition: none; }
+}
+
+

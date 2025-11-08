@@ -1,0 +1,91 @@
+<!doctype html>
+<!--
+  README: Hearing Mode page
+  Purpose: Let hearing users start/pause their webcam stream for future sign detection.
+  Files: hearing.html, hearing.css, hearing.js
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Hearing Mode – Enable your camera for live sign detection." />
+    <title>Hearing Mode – Live Sign Detection</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="hearing.css" />
+  </head>
+  <body>
+    <!-- Cracked glass layer with RGB glow -->
+    <div class="crack-layer" id="crackLayer" aria-hidden="true"></div>
+    
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" role="banner">
+      <div class="brand">SignBridge.ai</div>
+    </header>
+
+    <main id="main" class="main" role="main">
+      <div class="layout">
+        <section class="card camera-card" aria-labelledby="camera-title">
+          <h1 id="camera-title" class="title">Hearing Mode – Camera</h1>
+          <p class="subtitle">Enable your camera so we can detect sign language live.</p>
+
+          <div class="video-frame" aria-live="polite">
+            <video
+              id="cameraFeed"
+              class="video"
+              playsinline
+              muted
+              hidden
+            ></video>
+            <div id="videoPlaceholder" class="video-placeholder">Camera preview will appear here.</div>
+            
+            <!-- Gesture detection overlay -->
+            <div id="gestureOverlay" class="gesture-overlay" style="display:none;">
+              <div class="detection-status">🤚 Detecting Hand Gestures</div>
+              <div class="confidence-bar">
+                <div class="confidence-fill" id="confidenceFill" style="width: 0%;"></div>
+                <div class="confidence-text" id="confidenceText">Confidence: 0%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="controls" role="group" aria-label="Camera controls">
+            <button id="startBtn" type="button" class="btn">Start Camera</button>
+            <button id="pauseBtn" type="button" class="btn" disabled>Pause Camera</button>
+          </div>
+
+          <p id="camStatus" class="status" aria-live="polite">Camera: Not started</p>
+        </section>
+
+        <section class="card phrases-card" aria-labelledby="phrase-title">
+          <h2 id="phrase-title" class="title">Suggested Sentence</h2>
+          
+          <!-- Language Toggle Tabs -->
+          <div class="language-tabs" role="tablist">
+            <button id="langEn" class="lang-tab lang-tab-active" role="tab" aria-selected="true">English</button>
+            <button id="langHi" class="lang-tab" role="tab" aria-selected="false">हिंदी</button>
+          </div>
+          
+          <div id="currentLine" class="current-line" aria-live="polite">Pause the camera to show the first line.</div>
+          
+          <!-- Audio Control Button -->
+          <div class="audio-controls">
+            <button id="listenBtn" class="btn-audio" disabled>🔊 Listen</button>
+          </div>
+          
+          <!-- Hindi Meaning Box -->
+          <div class="hindi-meaning-container">
+            <h3 class="hindi-meaning-title">Hindi Meaning</h3>
+            <div id="hindiMeaning" class="hindi-meaning" aria-live="polite"></div>
+          </div>
+
+          <div class="history">
+            <h3 class="history-title">Recent lines</h3>
+            <ul id="lineHistory" class="history-list" aria-live="polite"></ul>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="hearing.js" defer></script>
+  </body>
+</html>

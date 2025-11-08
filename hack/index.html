@@ -1,0 +1,71 @@
+<!doctype html>
+<!--
+  README: Mode Selector Page (SignBridge.ai)
+  Purpose: Let users choose between Deaf and Hearing ("Normal") modes.
+  Files: index.html (this), styles.css, app.js
+  TODO routes:
+    - Deaf mode → /deaf.html (mic access, avatar + text)
+    - Hearing mode → /hearing.html (camera access, ISL recognition)
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Choose your SignBridge.ai experience: tailored modes for deaf and hearing users." />
+    <title>SignBridge.ai — Choose Your Mode</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Cracked glass layer with RGB glow -->
+    <div class="crack-layer" id="crackLayer" aria-hidden="true"></div>
+
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header" role="banner">
+      <div class="brand">SignBridge.ai</div>
+      <nav class="site-nav" aria-label="Utility">
+        <a href="#" class="nav-link">Privacy</a>
+        <a href="#" class="nav-link">Help</a>
+      </nav>
+    </header>
+
+    <main id="content" class="main" role="main">
+      <section class="hero" aria-labelledby="mode-title">
+        <h1 id="mode-title" class="title">Choose Your Mode</h1>
+        <p class="subtitle">Tailored experience for deaf and hearing users.</p>
+        <div class="rainbow-divider" aria-hidden="true"></div>
+
+        <div class="button-row" role="group" aria-label="Mode options">
+          <button
+            id="btn-deaf"
+            class="mode-btn"
+            type="button"
+            aria-label="Choose Deaf User mode"
+          >
+            Deaf User
+          </button>
+
+          <button
+            id="btn-hearing"
+            class="mode-btn"
+            type="button"
+            aria-label="Choose Hearing User mode"
+          >
+            Hearing User
+          </button>
+        </div>
+
+        <p class="caption">You can change this later.</p>
+      </section>
+    </main>
+
+    <!-- Toast region for lightweight confirmations -->
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="app.js" defer></script>
+  </body>
+  
+</html>
+
+
